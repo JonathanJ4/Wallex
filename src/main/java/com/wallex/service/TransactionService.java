@@ -38,7 +38,37 @@ public class TransactionService{
                 .map(this::mapToResponse)
                 .toList();
     }
-    private TransactionResponse mapToResponse(Transaction transaction) {
+    public TransactionResponse getTransactionById(Long id){
+        Transaction transaction = transactionRepository.findById(id)
+        .orElseThrow(()-> new RuntimeException("Transaction not found with id:" +id));
+
+    return mapToResponse(transaction);
+    }
+
+    public TransactionResponse updateTransaction(Long id, TransactionRequest request){
+        Transaction transaction = transactionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Transaction not found with id: " + id));
+
+        transaction.setAmount(request.amount());
+        transaction.setMerchant(request.merchant());
+        transaction.setCategory(request.category());
+        transaction.setTransactionDate(request.transactionDate());
+        transaction.setDescription(request.description());
+        transaction.setType(request.type());
+
+        Transaction updatedTransaction = transactionRepository.save(transaction);
+
+        return mapToResponse(updatedTransaction); 
+    }
+
+    public void deleteTransaction(Long id) {
+        if (!transactionRepository.existsById(id)) {
+            throw new RuntimeException("Transaction not found with id: " + id);
+        }
+        transactionRepository.deleteById(id);
+     }
+
+     private TransactionResponse mapToResponse(Transaction transaction) {
         return new TransactionResponse(
                 transaction.getId(),
                 transaction.getAmount(),
@@ -49,5 +79,4 @@ public class TransactionService{
                 transaction.getType()
         );
     }
-
 }
