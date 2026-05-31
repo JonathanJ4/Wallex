@@ -26,4 +26,21 @@ public class TransactionController {
     public List<TransactionResponse> getAllTransactions() {
         return transactionService.getAllTransactions();
     }
+    @GetMapping("/{id}")
+    public TransactionResponse getTransactionById(@PathVariable Long id) {
+        return transactionService.getTransactionById(id);
+    }
+
+    @PutMapping("/{id}")
+    public TransactionResponse updateTransaction(
+            @PathVariable Long id,
+            @RequestBody TransactionRequest request
+    ) {
+        return transactionService.updateTransaction(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTransaction(@PathVariable Long id) {
+        transactionService.deleteTransaction(id);
+    }
 }
