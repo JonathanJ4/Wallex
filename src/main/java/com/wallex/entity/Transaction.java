@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+import com.wallex.enums.TransactionType;
+
 
 @Entity
 @Getter
@@ -27,7 +29,8 @@ public class Transaction{
 
     private String description;
 
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private TransactionType type;
 
     public Transaction(
             double amount,
@@ -35,7 +38,7 @@ public class Transaction{
             String category,
             LocalDate transactionDate,
             String description,
-            String type
+            TransactionType type
     ) {
         this.amount = amount;
         this.merchant = merchant;
