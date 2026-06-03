@@ -1,14 +1,16 @@
 package com.wallex.dto;
 
+import com.wallex.enums.TransactionType;
+
 import java.time.LocalDate;
 
-
 public record TransactionResponse(
-    Long id,
+        Long id,
         double amount,
         String merchant,
         String category,
         LocalDate transactionDate,
         String description,
-        String type
-){}
+        TransactionType type
+) {
+}
