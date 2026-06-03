@@ -48,7 +48,7 @@ public class TransactionService{
 
     public TransactionResponse updateTransaction(Long id, TransactionRequest request){
         Transaction transaction = transactionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Transaction not found with id: " + id));
+                .orElseThrow(() -> new TransactionNotFoundException(id));
 
         transaction.setAmount(request.amount());
         transaction.setMerchant(request.merchant());
@@ -64,7 +64,7 @@ public class TransactionService{
 
     public void deleteTransaction(Long id) {
         if (!transactionRepository.existsById(id)) {
-            throw new RuntimeException("Transaction not found with id: " + id);
+            throw new TransactionNotFoundException(id);
         }
         transactionRepository.deleteById(id);
      }
