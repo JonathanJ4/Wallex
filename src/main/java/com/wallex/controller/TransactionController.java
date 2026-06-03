@@ -4,6 +4,9 @@ import com.wallex.dto.TransactionRequest;
 import com.wallex.dto.TransactionResponse;
 import com.wallex.service.TransactionService;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+
 
 import java.util.List;
 
@@ -18,7 +21,8 @@ public class TransactionController {
     }
 
     @PostMapping
-    public TransactionResponse createTransaction(@RequestBody TransactionRequest request) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public TransactionResponse createTransaction(@Valid @RequestBody TransactionRequest request) {
         return transactionService.createTransaction(request);
     }
 
@@ -34,7 +38,7 @@ public class TransactionController {
     @PutMapping("/{id}")
     public TransactionResponse updateTransaction(
             @PathVariable Long id,
-            @RequestBody TransactionRequest request
+            @Valid @RequestBody TransactionRequest request
     ) {
         return transactionService.updateTransaction(id, request);
     }
