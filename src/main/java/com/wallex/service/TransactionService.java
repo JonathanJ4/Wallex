@@ -5,6 +5,7 @@ import com.wallex.dto.TransactionResponse;
 import com.wallex.entity.Transaction;
 import com.wallex.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
+import com.wallex.exception.TransactionNotFoundException;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class TransactionService{
 
     public TransactionResponse createTransaction(TransactionRequest request){
         Transaction transaction = new Transaction(
-            request.amount(),
+                 request.amount(),
                 request.merchant(),
                 request.category(),
                 request.transactionDate(),
@@ -40,7 +41,7 @@ public class TransactionService{
     }
     public TransactionResponse getTransactionById(Long id){
         Transaction transaction = transactionRepository.findById(id)
-        .orElseThrow(()-> new RuntimeException("Transaction not found with id:" +id));
+        .orElseThrow(()-> new TransactionNotFoundException(id));
 
     return mapToResponse(transaction);
     }
