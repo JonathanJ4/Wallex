@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
+@RestControllerAdvice
 public class GlobalExceptionHandler{
 
     @ExceptionHandler(TransactionNotFoundException.class)
