@@ -80,4 +80,29 @@ public class TransactionService{
                 transaction.getType()
         );
     }
+    public List<TransactionResponse> searchTransactions(
+        String category,
+        String merchant,
+        com.wallex.enums.TransactionType type,
+        java.time.LocalDate startDate,
+        java.time.LocalDate endDate
+) {
+    List<Transaction> transactions;
+
+    if (category != null) {
+        transactions = transactionRepository.findByCategoryIgnoreCase(category);
+    } else if (merchant != null) {
+        transactions = transactionRepository.findByMerchantContainingIgnoreCase(merchant);
+    } else if (type != null) {
+        transactions = transactionRepository.findByType(type);
+    } else if (startDate != null && endDate != null) {
+        transactions = transactionRepository.findByTransactionDateBetween(startDate, endDate);
+    } else {
+        transactions = transactionRepository.findAll();
+    }
+
+    return transactions.stream()
+            .map(this::mapToResponse)
+            .toList();
+}
 }
