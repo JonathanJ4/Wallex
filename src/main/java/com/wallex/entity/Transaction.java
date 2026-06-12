@@ -12,6 +12,7 @@ import com.wallex.enums.TransactionType;
 
 @Entity
 @Getter
+@Table(name="transactions")
 @Setter
 @NoArgsConstructor
 public class Transaction{
