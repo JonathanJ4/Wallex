@@ -6,8 +6,9 @@ import com.wallex.service.TransactionService;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import com.wallex.enums.TransactionType;
 
-
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -48,4 +49,17 @@ public class TransactionController {
     public void deleteTransaction(@PathVariable Long id) {
         transactionService.deleteTransaction(id);
     }
+
+    @GetMapping("/search")
+public List<TransactionResponse> searchTransaction(
+    @RequestParam(required=false) String category,
+    @RequestParam(required=false) String merchant, 
+    @RequestParam(required = false) TransactionType type,
+    @RequestParam(required = false) LocalDate startDate,
+    @RequestParam(required = false) LocalDate endDate
+){
+    
+    return transactionService.searchTransaction(category, merchant, type, startDate, endDate);
+
+}
 }
