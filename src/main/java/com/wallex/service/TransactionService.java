@@ -6,8 +6,11 @@ import com.wallex.entity.Transaction;
 import com.wallex.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 import com.wallex.exception.TransactionNotFoundException;
+import java.time.LocalDate;
+import com.wallex.enums.TransactionType;
 
 import java.util.List;
+
 
 
 @Service 
@@ -80,29 +83,32 @@ public class TransactionService{
                 transaction.getType()
         );
     }
-    public List<TransactionResponse> searchTransactions(
+    public List<TransactionResponse> searchTransaction(
         String category,
         String merchant,
-        com.wallex.enums.TransactionType type,
-        java.time.LocalDate startDate,
-        java.time.LocalDate endDate
-) {
-    List<Transaction> transactions;
+        TransactionType type,
+        LocalDate startDate,
+        LocalDate endDate 
 
-    if (category != null) {
-        transactions = transactionRepository.findByCategoryIgnoreCase(category);
-    } else if (merchant != null) {
-        transactions = transactionRepository.findByMerchantContainingIgnoreCase(merchant);
-    } else if (type != null) {
-        transactions = transactionRepository.findByType(type);
-    } else if (startDate != null && endDate != null) {
+    ){
+        List<Transaction> transactions;
+
+        if(category!= null){
+            transactions= transactionRepository.findByCategoryIgnoreCase(category);
+
+        }
+        else if(merchant!= null){
+            transactions= transactionRepository.findByMerchantContainingIgnoreCase(merchant);
+        }
+        else if (startDate != null && endDate != null) {
         transactions = transactionRepository.findByTransactionDateBetween(startDate, endDate);
-    } else {
+         } else {
         transactions = transactionRepository.findAll();
-    }
+        }
 
     return transactions.stream()
-            .map(this::mapToResponse)
-            .toList();
-}
+    .map(this::mapToResponse)
+    .toList();
+        
+    }
 }
