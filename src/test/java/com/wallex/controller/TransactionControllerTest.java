@@ -50,7 +50,14 @@ class TransactionControllerTest{
         );
 
 
-        mockMvc.perform(requestBuilder)
+        mockMvc.perform("/transactions")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAString(request))
+            .andExpect(status().isCreated())
+            .andExpect(jsonPath("$.merchant").value("Uber Eats"))
+            .andExpect(jsonPath("$.category").value("Food"))
+            .andExpect(jsonPath("$.type").value("EXPENSE"));
 
 
+}
 }
