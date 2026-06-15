@@ -64,7 +64,7 @@ class TransactionControllerTest{
     @Test
     void shouldGetAllTransactions() throws Exception{
         transactionRepository.deleteAll();
-        TransactionRquest request = new TransactionRequest(
+        TransactionRequest request = new TransactionRequest(
             42.00,
                 "Walmart",
                 "Groceries",
@@ -73,13 +73,108 @@ class TransactionControllerTest{
                 TransactionType.EXPENSE
         );
 
-        mockMvc 
+        mockMvc.perform(post("/transactions")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                        .andExpect(status().isCreated());
 
-             
+        mockMvc.perform(get("/transactions"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].merchant").value("Walmart"));
     }
 
+    @Test 
+    void shouldReturnBadRequestForInvalidTransaction() throws Exception{
+        String invalidJson = """
+        {
+                 "amount": -10,
+                  "merchant": "",
+                  "category": "",
+                  "transactionDate": null,
+                  "description": "bad data",
+                  "type": null
 
+        }
+        """;
+        mockMvc.perform(post("/transactions")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(invalidJson))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400));
+    }
+    @Test
+    void shouldUpdateTransaction() throws Exception {
+        transactionRepository.deleteAll();
 
+        TransactionRequest originalRequest = new TransactionRequest(
+                15.99,
+                "Uber Eats",
+                "Food",
+                LocalDate.of(2026, 5, 29),
+                "Dinner order",
+                TransactionType.EXPENSE
+        );
 
+        String responseBody = mockMvc.perform(post("/transactions")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(originalRequest)))
+                .andExpect(status().isCreated())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
 
+        Long id = objectMapper.readTree(responseBody).get("id").asLong();
+
+        TransactionRequest updateRequest = new TransactionRequest(
+                22.50,
+                "Uber Eats",
+                "Food",
+                LocalDate.of(2026, 5, 29),
+                "Updated dinner order",
+                TransactionType.EXPENSE
+        );
+
+        mockMvc.perform(put("/transactions/" + id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(updateRequest)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.amount").value(22.50))
+                .andExpect(jsonPath("$.description").value("Updated dinner order"));
+    }
+
+    @Test
+    void shouldDeleteTransaction() throws Exception {
+        transactionRepository.deleteAll();
+
+        TransactionRequest request = new TransactionRequest(
+                15.99,
+                "Uber Eats",
+                "Food",
+                LocalDate.of(2026, 5, 29),
+                "Dinner order",
+                TransactionType.EXPENSE
+        );
+
+        String responseBody = mockMvc.perform(post("/transactions")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isCreated())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        Long id = objectMapper.readTree(responseBody).get("id").asLong();
+
+        mockMvc.perform(delete("/transactions/" + id))
+                .andExpect(status().isNoContent());
+
+        mockMvc.perform(get("/transactions"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(0)));
+    }
 }
+
+
+
+
