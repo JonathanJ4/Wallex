@@ -50,9 +50,9 @@ class TransactionControllerTest{
         );
 
 
-        mockMvc.perform("/transactions")
+        mockMvc.perform(post("/transactions")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAString(request))
+                .content(objectMapper.writeValueAsString(request)))
             .andExpect(status().isCreated())
             .andExpect(jsonPath("$.merchant").value("Uber Eats"))
             .andExpect(jsonPath("$.category").value("Food"))
@@ -60,4 +60,26 @@ class TransactionControllerTest{
 
 
 }
+
+    @Test
+    void shouldGetAllTransactions() throws Exception{
+        transactionRepository.deleteAll();
+        TransactionRquest request = new TransactionRequest(
+            42.00,
+                "Walmart",
+                "Groceries",
+                LocalDate.of(2026, 5, 30),
+                "Weekly groceries",
+                TransactionType.EXPENSE
+        );
+
+        mockMvc 
+
+             
+    }
+
+
+
+
+
 }
