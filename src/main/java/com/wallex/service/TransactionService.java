@@ -10,6 +10,14 @@ import java.time.LocalDate;
 import com.wallex.enums.TransactionType;
 
 import java.util.List;
+import com.opencsv.CSVReader;
+import com.wallex.dto.ImportSummaryResponse;
+import com.wallex.enums.TransactionType;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.InputStreamReader;
+import java.time.LocalDate;
+
 
 
 
@@ -111,4 +119,46 @@ public class TransactionService{
     .toList();
         
     }
+    public ImportSummaryResponse importTransactionsFromCsv(MultipartFile file) {
+    int imported = 0;
+    int failed = 0;
+
+    try (CSVReader csvReader = new CSVReader(new InputStreamReader(file.getInputStream()))) {
+        String[] row;
+
+        // Skip header row
+        csvReader.readNext();
+
+        while ((row = csvReader.readNext()) != null) {
+            try {
+                double amount = Double.parseDouble(row[0]);
+                String merchant = row[1];
+                String category = row[2];
+                LocalDate transactionDate = LocalDate.parse(row[3]);
+                String description = row[4];
+                TransactionType type = TransactionType.valueOf(row[5].toUpperCase());
+
+                Transaction transaction = new Transaction(
+                        amount,
+                        merchant,
+                        category,
+                        transactionDate,
+                        description,
+                        type
+                );
+
+                transactionRepository.save(transaction);
+                imported++;
+
+            } catch (Exception rowException) {
+                failed++;
+            }
+        }
+
+        return new ImportSummaryResponse(imported, failed);
+
+    } catch (Exception e) {
+        throw new RuntimeException("Failed to import CSV file");
+    }
+}
 }
