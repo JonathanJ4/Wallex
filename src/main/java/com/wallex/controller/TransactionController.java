@@ -8,6 +8,9 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import com.wallex.enums.TransactionType;
 
+import com.wallex.dto.ImportSummaryResponse;
+import org.springframework.http.MediaType;
+import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -61,5 +64,10 @@ public List<TransactionResponse> searchTransaction(
     
     return transactionService.searchTransaction(category, merchant, type, startDate, endDate);
 
+}
+
+@PostMapping(value = "/import/csv", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+public ImportSummaryResponse importTransactionsFromCsv(@RequestParam("file") MultipartFile file) {
+    return transactionService.importTransactionsFromCsv(file);
 }
 }
