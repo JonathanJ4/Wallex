@@ -1,0 +1,4 @@
+amount,merchant,category,transactionDate,description,type
+15.99,Uber Eats,Food,2026-05-29,Dinner order,EXPENSE
+42.00,Walmart,Groceries,2026-05-30,Weekly groceries,EXPENSE
+1200.00,Part-time Job,Income,2026-05-31,Paycheck,INCOME
