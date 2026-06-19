@@ -12,7 +12,7 @@ import java.io.IOException;
 @Service 
 public class PdfImportService{
     public PdfPreviewResponse extractText(MultipartFile file){
-        validatedPdf(file);
+        validatePdf(file);
     
 
         try(PDDocument document = Loader.loadPDF(file.getBytes())){
@@ -23,12 +23,25 @@ public class PdfImportService{
 
 
     }catch(IOException exception){
-        throw new Ill
+        throw new IllegalArgumentException( "Unable to read the file gangy", exception);
     }
 
     }
 
+    private void validatePdf(MultipartFile file){
+        if(file.isEmpty()){
+            throw new IllegalArgumentException("Yo the file cannot be empty twin");
+        }
+        String filename = file.getOriginalFilename();
+        String contentType = file.getContentType();
 
+        boolean hasPdfExtension = filename != null & filename.toLowerCase().endsWith("pdf");
+        boolean hasPdfContentType =
+                "application/pdf".equalsIgnoreCase(contentType);
+        if(!hasPdfExtension || !hasPdfContentType){
+            throw new IllegalArgumentException("Only pdf files allowed twin");
+        } 
+    }
 
 
 }
