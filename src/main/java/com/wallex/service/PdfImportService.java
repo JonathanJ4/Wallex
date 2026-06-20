@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import com.wallex.repository.TransactionRepository;
+import com.wallex.entity.Transaction;
+import java.util.*;
 
 @Service 
 public class PdfImportService{
@@ -52,6 +54,27 @@ public class PdfImportService{
             throw new IllegalArgumentException("Only pdf files allowed twin");
         } 
     }
+    public int importTransactions(MultipartFile file) {
+    validatePdf(file);
+
+    try (PDDocument document = Loader.loadPDF(file.getBytes())) {
+        PDFTextStripper textStripper = new PDFTextStripper();
+        String extractedText = textStripper.getText(document);
+
+        List<Transaction> transactions =
+                parserService.parseTransactions(extractedText);
+
+        transactionRepository.saveAll(transactions);
+
+        return transactions.size();
+
+    } catch (IOException exception) {
+        throw new IllegalArgumentException(
+                "Unable to read the uploaded PDF file",
+                exception
+        );
+    }
+}
 
 
 }
