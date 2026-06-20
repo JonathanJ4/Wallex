@@ -7,11 +7,21 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
-
+import com.wallex.repository.TransactionRepository;
 
 @Service 
 public class PdfImportService{
+    private final PdfTransactionParserService parserService;
+    private final TransactionRepository transactionRepository;
+    public PdfImportService(
+        PdfTransactionParserService parserService,
+        TransactionRepository transactionRepository
+) {
+    this.parserService = parserService;
+    this.transactionRepository = transactionRepository;
+}
     public PdfPreviewResponse extractText(MultipartFile file){
+        
         validatePdf(file);
     
 
