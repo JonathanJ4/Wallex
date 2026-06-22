@@ -54,7 +54,7 @@ public class PdfImportService{
             throw new IllegalArgumentException("Only pdf files allowed twin");
         } 
     }
-    public int importTransactions(MultipartFile file) {
+    public List<Transaction> importTransactions(MultipartFile file) {
     validatePdf(file);
 
     try (PDDocument document = Loader.loadPDF(file.getBytes())) {
@@ -65,8 +65,8 @@ public class PdfImportService{
                 parserService.parseTransactions(extractedText);
 
         transactionRepository.saveAll(transactions);
-
-        return transactions.size();
+      
+        return transactions;
 
     } catch (IOException exception) {
         throw new IllegalArgumentException(
@@ -74,6 +74,7 @@ public class PdfImportService{
                 exception
         );
     }
+        
 }
 
 

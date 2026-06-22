@@ -1,6 +1,7 @@
 package com.wallex.controller;
 
 import java.awt.PageAttributes;
+import java.util.*;
 
 import com.wallex.dto.PdfPreviewResponse;
 import com.wallex.service.PdfImportService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.wallex.dto.PdfImportResponse;
+import com.wallex.entity.Transaction;
 
 @RestController
 @RequestMapping("/transactions/import/pdf")
@@ -33,7 +35,7 @@ public class PdfImportController {
 
     @PostMapping(value  = "/import", consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
     public PdfImportResponse importPdf( @RequestParam ("file") MultipartFile file){
-        int imported = pdfImportService.importTransactions(file);
+        List<Transaction> imported = pdfImportService.importTransactions(file);
         return new PdfImportResponse(imported);
     }
 }

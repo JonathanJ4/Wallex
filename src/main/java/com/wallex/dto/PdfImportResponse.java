@@ -1,6 +1,8 @@
 package com.wallex.dto;
+import com.wallex.entity.Transaction;
+import java.util.*;
 
 public record PdfImportResponse(
-        int imported
+        List<Transaction> imported
 ) {
 }
