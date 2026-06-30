@@ -169,13 +169,6 @@ public class PdfTransactionParserService {
                 .replace("\r", "\n")
                 .replace('\u00A0', ' ')
                 .replaceAll("[ \\t]+", " ")
-
-                /*
-                 * Repairs dates split across lines:
-                 *
-                 * Thu, Jun.
-                 * 18, 2026 Rogers...
-                 */
                 .replaceAll(
                         "(?i)(Mon|Tue|Wed|Thu|Fri|Sat|Sun),\\s*" +
                         "([A-Z][a-z]{2})\\.?\\s*\\n\\s*" +

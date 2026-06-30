@@ -35,3 +35,4 @@ src/main/resources/application.properties
 .env
 src/test/resources/application-test.properties
 src/test/java/com/wallex/data/
+node_modules/
