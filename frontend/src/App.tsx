@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
-import WelcomePage from "./pages/WelcomePage";
 import DashboardPage from "./pages/DashboardPage";
+import WelcomePage from "./pages/WelcomePage";
 
 function App() {
   return (
