@@ -15,11 +15,11 @@ function WelcomePage(){
         <p className="welcome-logo">Wallex</p>
 
         <div className="welcome-content">
-          <p className="welcome-label">Welcome</p>
+          <p className="welcome-label">Welcome to Wallex</p>
           <h1 className="welcome-heading">
             A clearer view of your money.
           </h1>
-          <p className="welcome-description">
+          <p className="welcome-description">25
             Track transactions, import statements, and understand your
             spending in one place.
           </p>
