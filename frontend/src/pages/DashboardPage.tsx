@@ -39,6 +39,30 @@ function DashboardPage(){
             <h3>$2,359.55</h3>
           </div>
           </section>
+          <section className="main-grid">
+          <div className="glass-card chart-card">
+            <div className="card-header">
+              <h3>Income vs Expenditure</h3>
+              <button>Monthly</button>
+            </div>
+
+            <div className="fake-chart">
+              <div className="bar income" style={{ height: "70%" }}></div>
+              <div className="bar expense" style={{ height: "45%" }}></div>
+              <div className="bar income" style={{ height: "85%" }}></div>
+              <div className="bar expense" style={{ height: "55%" }}></div>
+              <div className="bar income" style={{ height: "60%" }}></div>
+              <div className="bar expense" style={{ height: "35%" }}></div>
+            </div>
+          </div>
+
+          <div className="glass-card month-card">
+            <h3>This Month</h3>
+            <p className="big-number">$1,890.45</p>
+            <span>Total spending</span>
+          </div>
+        </section>
+        
         </section>
     </main>
   )
