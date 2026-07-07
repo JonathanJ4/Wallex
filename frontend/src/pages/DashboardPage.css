@@ -3,38 +3,42 @@
   display: flex;
   color: #f4f4f5;
   background:
-    radial-gradient(circle at top center, rgba(255, 255, 255, 0.22), transparent 35%),
+    radial-gradient(
+      circle at top center,
+      rgba(255, 255, 255, 0.22),
+      transparent 35%
+    ),
     linear-gradient(135deg, #08090a, #1c1d20, #3a3b3f);
 }
 
 .sidebar {
-  width: 260px;
-  padding: 32px 22px;
+  width: 170px;
+  padding: 24px 16px;
   border-right: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(10, 10, 12, 0.38);
   backdrop-filter: blur(24px);
 }
 
 .sidebar-logo {
-  letter-spacing: 8px;
-  font-size: 28px;
-  margin-bottom: 48px;
+  letter-spacing: 6px;
+  font-size: 22px;
+  margin-bottom: 34px;
 }
 
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 9px;
 }
 
 .nav-item {
   border: none;
-  padding: 16px 18px;
-  border-radius: 14px;
+  padding: 11px 13px;
+  border-radius: 11px;
   text-align: left;
   color: #d4d4d8;
   background: transparent;
-  font-size: 15px;
+  font-size: 13px;
   cursor: pointer;
 }
 
@@ -46,23 +50,24 @@
 
 .dashboard-content {
   flex: 1;
-  padding: 36px;
+  padding: 24px;
 }
 
 .dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 }
 
 .dashboard-header h2 {
-  font-size: 34px;
+  font-size: 24px;
   margin: 0;
 }
 
 .dashboard-header p {
-  margin-top: 6px;
+  margin-top: 4px;
+  font-size: 13px;
   color: #c7c7cc;
 }
 
@@ -71,16 +76,17 @@
   background: rgba(10, 10, 12, 0.55);
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 12px 18px;
-  border-radius: 14px;
+  padding: 9px 13px;
+  border-radius: 11px;
+  font-size: 13px;
   cursor: pointer;
 }
 
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-bottom: 22px;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
 .summary-card,
@@ -88,35 +94,36 @@
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(255, 255, 255, 0.075);
   backdrop-filter: blur(26px);
-  border-radius: 22px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  border-radius: 15px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
 }
 
 .summary-card {
-  padding: 24px;
+  padding: 16px;
 }
 
 .summary-card p {
-  margin: 0 0 14px;
+  margin: 0 0 9px;
+  font-size: 13px;
   color: #c7c7cc;
 }
 
 .summary-card h3 {
   margin: 0;
-  font-size: 30px;
+  font-size: 18px;
 }
 
 .main-grid {
   display: grid;
   grid-template-columns: 2fr 0.8fr;
-  gap: 22px;
-  margin-bottom: 22px;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
 .chart-card,
 .month-card,
 .transactions-card {
-  padding: 24px;
+  padding: 18px;
 }
 
 .card-header {
@@ -125,18 +132,23 @@
   align-items: center;
 }
 
+.card-header h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
 .fake-chart {
-  height: 280px;
-  margin-top: 28px;
+  height: 160px;
+  margin-top: 18px;
   display: flex;
   align-items: end;
-  gap: 22px;
+  gap: 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .bar {
-  width: 46px;
-  border-radius: 14px 14px 0 0;
+  width: 26px;
+  border-radius: 10px 10px 0 0;
 }
 
 .income {
@@ -148,25 +160,27 @@
 }
 
 .big-number {
-  font-size: 34px;
+  font-size: 24px;
   font-weight: 700;
-  margin-top: 42px;
+  margin-top: 26px;
 }
 
 .month-card span {
+  font-size: 13px;
   color: #c7c7cc;
 }
 
 .transaction-row {
   display: grid;
   grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr;
-  padding: 16px 8px;
+  padding: 11px 6px;
+  font-size: 13px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .table-head {
   color: #a1a1aa;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .income-text {
