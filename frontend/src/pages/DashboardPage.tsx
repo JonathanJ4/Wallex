@@ -72,6 +72,7 @@ function DashboardPage(){
 
           {transactions.map((transaction) => (
             <div className="transaction-row" key={transaction.id}>
+              <span>{transaction.id}</span>
               <span>{transaction.date}</span>
 
               <span>{transaction.merchant}</span>
