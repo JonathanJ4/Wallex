@@ -1,4 +1,6 @@
 import "./DashboardPage.css";
+import { transactions } from "../data/transactions";
+
 
 function DashboardPage(){
 
@@ -23,7 +25,7 @@ function DashboardPage(){
 
           <button className="month-button">July 2026</button>
         </div>
-          <section className="summary-grid">
+        <section className="summary-grid">
           <div className="summary-card">
             <p>Total Income</p>
             <h3>$4,250.00</h3>
@@ -38,8 +40,8 @@ function DashboardPage(){
             <p>Net Savings</p>
             <h3>$2,359.55</h3>
           </div>
-          </section>
-          <section className="main-grid">
+        </section>
+        <section className="main-grid">
           <div className="glass-card chart-card">
             <div className="card-header">
               <h3>Income vs Expenditure</h3>
@@ -61,49 +63,37 @@ function DashboardPage(){
             <p className="big-number">$1,890.45</p>
             <span>Total spending</span>
           </div>
-          
         </section>
-          <section className="glass-card transactions-card">
+        <section className="glass-card transactions-card">
           <div className="card-header">
             <h3>Recent Transactions</h3>
             <button>View All</button>
           </div>
 
-          <div className="transaction-row table-head">
-            <span>Date</span>
-            <span>Merchant</span>
-            <span>Category</span>
-            <span>Type</span>
-            <span>Amount</span>
-          </div>
+          {transactions.map((transaction) => (
+            <div className="transaction-row" key={transaction.id}>
+              <span>{transaction.date}</span>
 
-          <div className="transaction-row">
-            <span>Jul 4, 2026</span>
-            <span>Tim Hortons</span>
-            <span>Food</span>
-            <span>Expense</span>
-            <span className="expense-text">-$7.90</span>
-          </div>
+              <span>{transaction.merchant}</span>
 
-          <div className="transaction-row">
-            <span>Jul 3, 2026</span>
-            <span>Salary</span>
-            <span>Income</span>
-            <span>Income</span>
-            <span className="income-text">+$2,500.00</span>
-          </div>
+              <span>{transaction.category}</span>
 
-          <div className="transaction-row">
-            <span>Jul 2, 2026</span>
-            <span>Spotify</span>
-            <span>Subscription</span>
-            <span>Expense</span>
-            <span className="expense-text">-$11.99</span>
-          </div>
-         </section>
+              <span>{transaction.type}</span>
+
+              <span
+                className={
+                  transaction.type === "Income" ? "income-text" : "expense-text"
+                }
+              >
+                {transaction.type === "Income" ? "+" : "-"}$
+                {transaction.amount.toFixed(2)}
+              </span>
+            </div>
+          ))}
         </section>
+      </section>
     </main>
-  )
+  );
 }
 
 export default DashboardPage;
