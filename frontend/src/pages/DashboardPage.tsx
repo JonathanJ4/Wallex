@@ -46,17 +46,17 @@ function DashboardPage() {
         <section className="summary-grid">
           <div className="summary-card">
             <p>Total Income</p>
-            <h3>$4,250.00</h3>
+            <h3>${totalIncome.toFixed(2)}</h3>
           </div>
 
           <div className="summary-card">
             <p>Total Expenses</p>
-            <h3>$1,890.45</h3>
+            <h3>${totalExpenses.toFixed(2)}</h3>
           </div>
 
           <div className="summary-card">
             <p>Net Savings</p>
-            <h3>$2,359.55</h3>
+            <h3>${netSavings.toFixed(2)}</h3>
           </div>
         </section>
         <section className="main-grid">
