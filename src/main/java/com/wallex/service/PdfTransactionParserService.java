@@ -131,7 +131,7 @@ public class PdfTransactionParserService {
         transactions.add(new Transaction(
                 Math.abs(amount),
                 merchant,
-                "Other",
+                null,
                 transactionDate,
                 "Imported from PDF",
                 TransactionType.EXPENSE
