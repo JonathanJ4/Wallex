@@ -46,7 +46,7 @@ function TransactionsPage(){
     setIsUploading(true);
     setUploadMessage("Uploading PDF...");
 
-    fetch("http://localhost:8080/imports/pdf/import", {
+    fetch("http://localhost:8080/transactions/import/pdf/import", {
       method: "POST",
       body: formData,
     })
@@ -77,7 +77,7 @@ function TransactionsPage(){
     return transactions.filter((transaction) => {
       return (
         transaction.merchant.toLowerCase().includes(search) ||
-        transaction.category.toLowerCase().includes(search) ||
+        (transaction.category ?? "").toLowerCase().includes(search) ||
         transaction.type.toLowerCase().includes(search) ||
         transaction.description.toLowerCase().includes(search) ||
         transaction.transactionDate.toLowerCase().includes(search) ||
