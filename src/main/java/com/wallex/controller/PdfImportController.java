@@ -15,6 +15,7 @@ import com.wallex.entity.Transaction;
 
 @RestController
 @RequestMapping("/transactions/import/pdf")
+@CrossOrigin(origins = "http://localhost:5173")
 public class PdfImportController {
 
     private final PdfImportService pdfImportService;

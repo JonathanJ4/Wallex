@@ -46,7 +46,7 @@ function TransactionsPage(){
     setIsUploading(true);
     setUploadMessage("Uploading PDF...");
 
-    fetch("http://localhost:8080/imports/pdf", {
+    fetch("http://localhost:8080/imports/pdf/import", {
       method: "POST",
       body: formData,
     })

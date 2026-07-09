@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./DashboardPage.css";
 import type { Transaction } from "../types/Transaction";
+import { Link } from "react-router";
 
 function DashboardPage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -28,9 +29,19 @@ function DashboardPage() {
         <h1 className="sidebar-logo">Wallex</h1>
 
         <nav className="sidebar-nav">
-          <button className="nav-item active ">Dashboard</button>
-          <button className="nav-item">Transactions</button>
-          <button className="nav-item">Subscriptions</button>
+          <nav className="sidebar-nav">
+            <Link className="nav-item active" to="/dashboard">
+              Dashboard
+            </Link>
+
+            <Link className="nav-item" to="/transactions">
+              Transactions
+            </Link>
+
+            <Link className="nav-item" to="#">
+              Budgets
+            </Link>
+          </nav>
         </nav>
       </aside>
 
@@ -88,22 +99,22 @@ function DashboardPage() {
             <button>View All</button>
           </div>
 
-           {transactions.map((transaction) => (
-        <div className="transaction-row" key={transaction.id}>
-          <span>{transaction.transactionDate}</span>
-          <span>{transaction.merchant}</span>
-          <span>{transaction.category}</span>
-          <span>{transaction.type}</span>
-          <span
-            className={
-              transaction.type === "Income" ? "income-text" : "expense-text"
-            }
-          >
-            {transaction.type === "Income" ? "+" : "-"}$
-            {transaction.amount.toFixed(2)}
-          </span>
-        </div>
-      ))}
+          {transactions.map((transaction) => (
+            <div className="transaction-row" key={transaction.id}>
+              <span>{transaction.transactionDate}</span>
+              <span>{transaction.merchant}</span>
+              <span>{transaction.category}</span>
+              <span>{transaction.type}</span>
+              <span
+                className={
+                  transaction.type === "Income" ? "income-text" : "expense-text"
+                }
+              >
+                {transaction.type === "Income" ? "+" : "-"}$
+                {transaction.amount.toFixed(2)}
+              </span>
+            </div>
+          ))}
         </section>
       </section>
     </main>

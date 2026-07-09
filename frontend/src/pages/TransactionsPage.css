@@ -1,0 +1,171 @@
+.transactions-page {
+  min-height: 100vh;
+  display: flex;
+  color: #f4f4f5;
+  background:
+    radial-gradient(circle at top center, rgba(255, 255, 255, 0.2), transparent 35%),
+    linear-gradient(135deg, #07080a, #17181b, #34363a);
+}
+
+.transactions-sidebar {
+  width: 260px;
+  padding: 32px 22px;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(10, 10, 12, 0.42);
+  backdrop-filter: blur(26px);
+}
+
+.transactions-logo {
+  letter-spacing: 8px;
+  font-size: 28px;
+  margin-bottom: 48px;
+}
+
+.transactions-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.transactions-nav a {
+  text-decoration: none;
+  padding: 16px 18px;
+  border-radius: 14px;
+  color: #d4d4d8;
+  font-size: 15px;
+}
+
+.transactions-nav a.active,
+.transactions-nav a:hover {
+  background: rgba(255, 255, 255, 0.13);
+  color: white;
+}
+
+.transactions-content {
+  flex: 1;
+  padding: 36px;
+}
+
+.transactions-header {
+  margin-bottom: 28px;
+}
+
+.transactions-header h2 {
+  font-size: 34px;
+  margin: 0;
+}
+
+.transactions-header p {
+  color: #c7c7cc;
+  margin-top: 8px;
+}
+
+.upload-card,
+.transactions-table-card {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.075);
+  backdrop-filter: blur(28px);
+  border-radius: 24px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+.upload-card {
+  padding: 26px;
+  margin-bottom: 24px;
+}
+
+.upload-card h3,
+.transactions-table-card h3 {
+  margin: 0;
+}
+
+.upload-card p,
+.transactions-table-card p {
+  color: #c7c7cc;
+}
+
+.upload-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.file-label,
+.upload-button {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 13px 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.file-label {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.file-label input {
+  display: none;
+}
+
+.upload-button {
+  background: #050505;
+  color: white;
+}
+
+.upload-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.selected-file,
+.upload-message {
+  margin-top: 16px;
+}
+
+.transactions-table-card {
+  padding: 24px;
+}
+
+.transactions-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.search-input {
+  width: 320px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  outline: none;
+  color: white;
+  background: rgba(10, 10, 12, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.search-input::placeholder {
+  color: #a1a1aa;
+}
+
+.transaction-row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr 1fr 1.5fr 1fr;
+  gap: 16px;
+  padding: 16px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  align-items: center;
+}
+
+.table-head {
+  color: #a1a1aa;
+  font-size: 14px;
+}
+
+.income-text {
+  color: #8fd18b;
+}
+
+.expense-text {
+  color: #ff7d73;
+}
