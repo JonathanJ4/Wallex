@@ -97,10 +97,6 @@ function TransactionsPage(){
             Transactions
           </a>
           <a href="#">Budgets</a>
-          <a href="#">Categories</a>
-          <a href="#">Reports</a>
-          <a href="#">AI Assistant</a>
-          <a href="#">Settings</a>
         </nav>
       </aside>
 
