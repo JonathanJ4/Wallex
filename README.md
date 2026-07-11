@@ -168,19 +168,6 @@ One of the main challenges was PDF parsing. Some transactions were extracted acr
 
 Another challenge was connecting services across Docker containers. The backend connects to PostgreSQL using the Docker Compose service name instead of `localhost`, and Nginx forwards `/api` requests from the frontend to Spring Boot.
 
-## Roadmap
-
-- [ ] Monthly dashboard filters
-- [ ] Manual transaction form
-- [ ] CSV imports
-- [ ] Duplicate transaction detection
-- [ ] Merchant categorization rules
-- [ ] Monthly budgets
-- [ ] Recurring subscription detection
-- [ ] Authentication
-- [ ] AI monthly summaries
-- [ ] CSV and PDF exports
-- [ ] Production deployment
 
 ## Author
 
