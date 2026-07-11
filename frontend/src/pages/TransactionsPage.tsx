@@ -15,7 +15,7 @@ function TransactionsPage(){
   }, []);
 
   function fetchTransactions() {
-    fetch("http://localhost:8080/transactions")
+    fetch("/api/transactions")
       .then((response) => response.json())
       .then((data) => setTransactions(data))
       .catch((error) => {
@@ -46,7 +46,7 @@ function TransactionsPage(){
     setIsUploading(true);
     setUploadMessage("Uploading PDF...");
 
-    fetch("http://localhost:8080/transactions/import/pdf/import", {
+    fetch("/api/transactions/import/pdf/import", {
       method: "POST",
       body: formData,
     })

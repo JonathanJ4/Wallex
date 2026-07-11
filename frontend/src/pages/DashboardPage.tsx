@@ -7,7 +7,7 @@ function DashboardPage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/transactions")
+    fetch("/api/transactions")
       .then((response) => response.json())
       .then((data) => setTransactions(data))
       .catch((error) => console.error("Failed to fetch transactions", error));
