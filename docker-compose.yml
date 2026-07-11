@@ -1,16 +1,41 @@
 services:
   postgres:
     image: postgres:17
-    container_name: ${POSTGRES_CONTAINER_NAME}
+    container_name: wallex-postgres
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    ports:
-      - "${POSTGRES_PORT}:5432"
+      POSTGRES_DB: wallex
+      POSTGRES_USER: wallex_user
+      POSTGRES_PASSWORD: wallex_password
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - wallex_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wallex_user -d wallex"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: DockerFile
+    container_name: wallex-backend
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres:5432/wallex
+      DATABASE_USERNAME: wallex_user
+      DATABASE_PASSWORD: wallex_password
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: DockerFile
+    container_name: wallex-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
 
 volumes:
-  postgres_data:
-    name: ${POSTGRES_VOLUME_NAME}
+  wallex_postgres_data:
