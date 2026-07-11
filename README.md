@@ -1,6 +1,7 @@
 # Wallex
 
 Wallex is a full-stack personal finance app that lets users upload PDF bank statements, extract transactions, store them in PostgreSQL, and view them through a searchable dashboard.
+TL;DR I was bored and wanted to freshen up / Learn full stack dev :)
 
 ## Features
 
