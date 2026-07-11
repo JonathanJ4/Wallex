@@ -1,26 +1,7 @@
 name: Wallex Backend CI
 
 on:
-  push:
-    branches:
-      -main
-    paths: 
-      - "src/**"
-      - "pom.xml"
-      - "mvnw"
-      - "mvnw.cmd"
-      - ".mvn/**"
-      - ".github/workflows/backend-ci.yml"
-  pull_request:
-    branches:
-      - main
-    paths:
-      - "src/**"
-      - "pom.xml"
-      - "mvnw"
-      - "mvnw.cmd"
-      - ".mvn/**"
-      - ".github/workflows/backend-ci.yml"
+ 
   workflow_dispatch:
 
 jobs:
