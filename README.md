@@ -67,15 +67,6 @@ Spring Data JPA
 PostgreSQL
 ```
 
-## Screenshots
-
-Add screenshots here once the UI is finalized.
-
-```md
-![Dashboard](docs/dashboard.png)
-![Transactions](docs/transactions.png)
-```
-
 ## Running with Docker
 
 ### Prerequisites
